@@ -1,0 +1,23 @@
+{
+  "name": "fluffy-telegram",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Michael Chapman",
+  "description": "A lightweight web starter pack",
+  "private": true,
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build --production",
+    "fix": "standard --fix"
+  },
+  "devDependencies": {
+    "babel-preset-latest": "^6.22.0",
+    "babel-register": "^6.22.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-replace": "^0.5.4",
+    "rimraf": "^2.5.4",
+    "standard": "^8.6.0",
+    "yargs": "^6.6.0"
+  }
+}
