@@ -25,7 +25,15 @@ export default {
         src: srcPath('index.html'),
         dest: destPath('/')
       }
+    },
+    scss: {
+      include: [],
+      src: srcPath('assets/scss/style.scss'),
+      dest: destPath('assets/css')
     }
+  },
+  autoprefixer: {
+    browsers: ['last 2 versions', 'ie >= 9', 'ios >= 7']
   },
   tokens: {
     appName: {
