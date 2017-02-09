@@ -22,6 +22,7 @@ gulp.task('copy:misc', () => {
 
 gulp.task('html', () => {
   return gulp.src(config.paths.html.src)
+    .pipe($.if(PRODUCTION, $.htmlmin(config.htmlmin)))
     .pipe(gulp.dest(config.paths.html.dest))
 })
 

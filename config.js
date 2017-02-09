@@ -38,7 +38,7 @@ export default {
     misc: {
       src: [
         srcPath('**/*.*'),
-        '!' + srcPath('index.html'),
+        '!' + srcPath('**/*.html'),
         '!' + srcPath('assets/{img,js,scss}/**/*.*')
       ],
       dest: destPath('/')
@@ -48,8 +48,18 @@ export default {
     browsers: ['last 2 versions', 'ie >= 9', 'ios >= 7']
   },
   browserSync: {
-    server: destPath('/'),
-    port: 8080
+    server: destPath('/')
+  },
+  htmlmin: {
+    removeComments: true,
+    collapseWhitespace: true,
+    collapseBooleanAttributes: true,
+    removeAttributeQuotes: true,
+    removeRedundantAttributes: true,
+    removeEmptyAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    removeOptionalTags: true
   },
   imagemin: {
     progressive: true,
