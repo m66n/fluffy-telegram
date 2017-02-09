@@ -1,3 +1,4 @@
 (function () {
-  document.querySelector('#message').innerHtml = 'hello, world!'
+  const el = document.querySelector('#msg')
+  el.textContent = 'hello, world!'
 }())

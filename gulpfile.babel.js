@@ -44,7 +44,8 @@ gulp.task('scss', () => {
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       includePaths: scss.include
-    }).on('error', $.sass.logError))
+    })
+      .on('error', $.sass.logError))
     .pipe($.autoprefixer(config.autoprefixer))
     .pipe($.if(PRODUCTION, $.cssnano()))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
@@ -56,5 +57,18 @@ gulp.task('scss', () => {
   */
 })
 
+gulp.task('js', () => {
+  return gulp.src(config.paths.js.src)
+    .pipe($.sourcemaps.init())
+    .pipe($.babel({
+      ignore: []
+    }))
+    .pipe($.concat(config.paths.js.out))
+    .pipe($.if(PRODUCTION, $.uglify()
+      .on('error', e => console.log(e))))
+    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+    .pipe(gulp.dest(config.paths.js.dest))
+})
+
 gulp.task('build',
-  gulp.series('clean', gulp.parallel('copy', 'scss')))
+  gulp.series('clean', gulp.parallel('copy', 'scss', 'js')))

@@ -35,6 +35,13 @@ export default {
       src: srcPath('assets/img/**/*'),
       dest: destPath('assets/img')
     },
+    js: {
+      src: [
+        srcPath('assets/js/script.js')
+      ],
+      dest: destPath('assets/js'),
+      out: 'script.js'
+    },
     misc: {
       src: [
         srcPath('**/*.*'),
