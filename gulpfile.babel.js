@@ -20,14 +20,9 @@ gulp.task('copy:misc', () => {
     .pipe(gulp.dest(config.paths.misc.dest))
 })
 
-gulp.task('html:index', () => {
-  const index = config.paths.html.index
-  const appName = config.tokens.appName
-  const themeColor = config.tokens.themeColor
-  return gulp.src(index.src)
-    .pipe($.replace(appName.find, appName.replace))
-    .pipe($.replace(themeColor.find, themeColor.replace))
-    .pipe(gulp.dest(index.dest))
+gulp.task('html', () => {
+  return gulp.src(config.paths.html.src)
+    .pipe(gulp.dest(config.paths.html.dest))
 })
 
 gulp.task('img', () => {
@@ -37,13 +32,11 @@ gulp.task('img', () => {
 })
 
 gulp.task('copy',
-  gulp.parallel('copy:misc', 'html:index', 'img'))
+  gulp.parallel('copy:misc', 'html', 'img'))
 
 gulp.task('scss', () => {
   const scss = config.paths.scss
-  const themeColor = config.tokens.themeColor
   return gulp.src(scss.src)
-    .pipe($.replace(themeColor.find, themeColor.replace))
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       includePaths: scss.include,
@@ -86,8 +79,8 @@ function serve () {
 
 function watch () {
   gulp.watch(config.paths.misc.src, gulp.series('copy:misc'))
-  gulp.watch(config.paths.html.index.src)
-    .on('all', gulp.series('html:index', reload))
+  gulp.watch(config.paths.html.src)
+    .on('all', gulp.series('html', reload))
   gulp.watch(config.paths.img.src)
     .on('all', gulp.series('img', reload))
   gulp.watch(config.paths.scss.src)

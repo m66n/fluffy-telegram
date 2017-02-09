@@ -1,12 +1,7 @@
-import {
-  join
-} from 'path'
+import { join } from 'path'
 
 const DIST = 'dist'
 const SRC = 'src'
-
-const APP_NAME = 'fluffy-telegram'
-const THEME_COLOR = '#2f3ba2'
 
 function srcPath (path) {
   return join(SRC, path)
@@ -21,10 +16,8 @@ export default {
     src: SRC,
     dist: DIST,
     html: {
-      index: {
-        src: srcPath('index.html'),
-        dest: destPath('/')
-      }
+      src: srcPath('**/*.html'),
+      dest: destPath('/')
     },
     scss: {
       include: [],
@@ -54,25 +47,15 @@ export default {
   autoprefixer: {
     browsers: ['last 2 versions', 'ie >= 9', 'ios >= 7']
   },
-  imagemin: {
-    progressive: true,
-    interlaced: true
-  },
   browserSync: {
     server: destPath('/'),
     port: 8080
   },
+  imagemin: {
+    progressive: true,
+    interlaced: true
+  },
   scss: {
     precision: 10
-  },
-  tokens: {
-    appName: {
-      find: /%%appName%%/g,
-      replace: APP_NAME
-    },
-    themeColor: {
-      find: /%%themeColor%%/g,
-      replace: THEME_COLOR
-    }
   }
 }
