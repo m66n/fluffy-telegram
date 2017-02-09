@@ -30,10 +30,25 @@ export default {
       include: [],
       src: srcPath('assets/scss/style.scss'),
       dest: destPath('assets/css')
+    },
+    img: {
+      src: srcPath('assets/img/**/*'),
+      dest: destPath('assets/img')
+    },
+    misc: {
+      src: [
+        srcPath('**/*.*'),
+        '!' + srcPath('index.html'),
+        '!' + srcPath('assets/{img,js,scss}/**/*.*')
+      ],
+      dest: destPath('/')
     }
   },
   autoprefixer: {
     browsers: ['last 2 versions', 'ie >= 9', 'ios >= 7']
+  },
+  imagemin: {
+    progressive: true
   },
   tokens: {
     appName: {
