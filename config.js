@@ -55,7 +55,15 @@ export default {
     browsers: ['last 2 versions', 'ie >= 9', 'ios >= 7']
   },
   imagemin: {
-    progressive: true
+    progressive: true,
+    interlaced: true
+  },
+  browserSync: {
+    server: destPath('/'),
+    port: 8080
+  },
+  scss: {
+    precision: 10
   },
   tokens: {
     appName: {
