@@ -36,31 +36,20 @@ gulp.task('copy',
   gulp.parallel('copy:misc', 'html', 'img'))
 
 gulp.task('scss', () => {
-  const scss = config.paths.scss
-  return gulp.src(scss.src)
+  return gulp.src(config.paths.scss.src)
     .pipe($.sourcemaps.init())
-    .pipe($.sass({
-      includePaths: scss.include,
-      precision: config.scss.precision
-    })
+    .pipe($.sass(config.scss)
       .on('error', $.sass.logError))
     .pipe($.autoprefixer(config.autoprefixer))
     .pipe($.if(PRODUCTION, $.cssnano()))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(scss.dest))
-  /*
-  .pipe(browser.reload({
-    stream: true
-  }))
-  */
+    .pipe(gulp.dest(config.paths.scss.dest))
 })
 
 gulp.task('js', () => {
   return gulp.src(config.paths.js.src)
     .pipe($.sourcemaps.init())
-    .pipe($.babel({
-      ignore: []
-    }))
+    .pipe($.babel(config.babel))
     .pipe($.concat(config.paths.js.out))
     .pipe($.if(PRODUCTION, $.uglify()
       .on('error', e => console.log(e))))
@@ -84,7 +73,7 @@ function watch () {
     .on('all', gulp.series('html', reload))
   gulp.watch(config.paths.img.src)
     .on('all', gulp.series('img', reload))
-  gulp.watch(config.paths.scss.src)
+  gulp.watch(config.paths.scss.watch)
     .on('all', gulp.series('scss', reload))
   gulp.watch(config.paths.js.src)
     .on('all', gulp.series('js', reload))

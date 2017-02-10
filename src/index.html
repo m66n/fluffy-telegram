@@ -21,8 +21,28 @@
 </head>
 
 <body>
-  <div class="container">
-    <h3 id="msg">you should not see this</h3>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text">Site Title</li>
+        <li role="menuitem">
+          <a href="#">One</a>
+          <ul class="menu vertical">
+            <li><a href="#" role="menuitem">One</a></li>
+            <li><a href="#">Two</a></li>
+            <li><a href="#">Three</a></li>
+          </ul>
+        </li>
+        <li role="menuitem"><a href="#">Two</a></li>
+        <li role="menuitem"><a href="#">Three</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li><input type="search" placeholder="Search"></li>
+        <li><button type="button" class="button">Search</button></li>
+      </ul>
+    </div>
   </div>
   <script src="assets/js/script.js"></script>
 </body>
